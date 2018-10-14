@@ -1,14 +1,5 @@
 package withGUI;
 
-//public class hello {
-//
-//	public static void main(String[] args) {
-//System.out.println("Hello");
-//	}
-//
-//}
-
-
 import javax.swing.*;
 
 import java.awt.*;
@@ -23,7 +14,7 @@ public class CalculateDelta extends JFrame
 
     private JLabel Root1, Root2;
 
-    private JLabel CoAx, CoBx, CoCx, Root1x, Root2x;
+    private JLabel CoAx, CoBx, CoCx, Root1x, Root2x, space, space1, space2;
 
     private JButton calculateB, exitB;
 
@@ -31,58 +22,80 @@ public class CalculateDelta extends JFrame
 
     private ExitButtonHandler ebHandler;
 
- 
-
     public CalculateDelta()
 
     {
 
-        setTitle("Quadratic Fun");        
+        setTitle("");        
 
-        CoAx = new JLabel("a", SwingConstants.CENTER);
+        CoAx = new JLabel("Podaj a", SwingConstants.CENTER);
 
-        CoBx = new JLabel("b", SwingConstants.CENTER);
+        CoBx = new JLabel("Podaj b", SwingConstants.CENTER);
 
-        CoCx = new JLabel("c", SwingConstants.CENTER);
-
-        Root1x = new JLabel("Root1", SwingConstants.CENTER);
-
-        Root2x = new JLabel("Root2", SwingConstants.CENTER);
-
-
-        CoA = new JTextField(10);
-
-        CoB = new JTextField(10);
-
-        CoC = new JTextField(10);
-
-        Root1 = new JLabel("", SwingConstants.RIGHT);
-
-        Root2 = new JLabel("", SwingConstants.RIGHT);             
-
+        CoCx = new JLabel("Podaj c", SwingConstants.CENTER);
         
 
-        calculateB = new JButton("Calculate");
+        CoAx.setFont(new Font("Courier New", Font.ITALIC, 12));
+
+        CoBx.setFont(new Font("Courier New", Font.ITALIC, 12));
+
+        CoCx.setFont(new Font("Courier New", Font.ITALIC, 12));
+
+        Root1x = new JLabel("Pierwiastek pierwszy:", SwingConstants.CENTER);
+
+        Root2x = new JLabel("Pierwiastek drugi:", SwingConstants.CENTER);
+
+        space = new JLabel("", SwingConstants.CENTER);
+
+        space1 = new JLabel("", SwingConstants.CENTER);
+
+        space2 = new JLabel("", SwingConstants.CENTER);
+
+        final Color col = Color.CYAN;
+        final Color colBlue = Color.BLUE;
+        final Color colGrey = Color.lightGray;
+
+
+
+        CoA = new JTextField(6);
+        CoA.setBackground(col);
+
+        CoB = new JTextField(6);
+        CoB.setBackground(col);
+
+        CoC = new JTextField(6);
+        CoC.setBackground(col);
+
+        Root1 = new JLabel("", SwingConstants.LEFT);
+
+        Root2 = new JLabel("", SwingConstants.LEFT);             
+
+        space = new JLabel("", SwingConstants.RIGHT);
+        space1 = new JLabel("", SwingConstants.RIGHT);
+
+        space2 = new JLabel("", SwingConstants.RIGHT);
+
+
+
+        calculateB = new JButton("Oblicz pierwiastki");
+        
+        calculateB.setBackground(colBlue);
+        calculateB.setForeground(col);
+        calculateB.setFont(new Font("Courier New", Font.ITALIC, 12));
 
         cbHandler = new CalculateButtonHandler();
 
         calculateB.addActionListener(cbHandler);
 
+
+        Container pane = getContentPane();
+
+        pane.setLayout(new GridLayout(8, 6));
+        pane.setBackground(colGrey);
        
 
-        exitB = new JButton("Exit");
-
-        ebHandler = new ExitButtonHandler();
-
-        exitB.addActionListener(ebHandler);
-
-
-        Container pane = getContentPane();//Get the container
-
-        pane.setLayout(new GridLayout(6, 2));//Set the Layout
-
-        //Place the components in the pane
-
+        pane.add(space1);
+        pane.add(space2);
         pane.add(CoAx);
 
         pane.add(CoA);
@@ -103,13 +116,13 @@ public class CalculateDelta extends JFrame
 
         pane.add(Root2);
 
+        pane.add(space);
+        
         pane.add(calculateB);
-
-        pane.add(exitB);
 
  
 
-        setSize(400,300);
+        setSize(800,500);
 
         setVisible(true);
 
@@ -119,7 +132,7 @@ public class CalculateDelta extends JFrame
 
  
 
-    private class CalculateButtonHandler implements ActionListener//Creates a class on top of the interface
+    private class CalculateButtonHandler implements ActionListener
 
     {
 
@@ -165,16 +178,15 @@ public class CalculateDelta extends JFrame
                  System.out.println("Rozwi¹zanie to: " + x1 + ", " + x2);
 
              }else if (delta < 0){
+            	 
+            	 Root1.setText("" + "Delta is less than 0" );
+
+                 Root2.setText("" + "Delta is less than 0 ");
 
                  System.out.println("delta jest ujemna - brak rozwi¹zañ");
 
              }
-         //   Root1.setText("" + a + " " + b + " " + c );
-//
-//
-//            Root2.setText("" + x1 + " " + x2);
 
- 
 
         }
 
