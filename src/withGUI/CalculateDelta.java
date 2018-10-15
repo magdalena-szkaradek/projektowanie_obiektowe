@@ -10,13 +10,13 @@ public class CalculateDelta extends JFrame
 
 {
 
-    private JTextField CoA, CoB, CoC; 
+    private JTextField firstJTF, secondJTF, thirdJTF; 
 
     private JLabel Root1, Root2;
 
-    private JLabel CoAx, CoBx, CoCx, Root1x, Root2x, space, space1, space2;
+    private JLabel firstJL, secondJL, thirdJL, Root1x, Root2x, space, space1, space2;
 
-    private JButton calculateB, exitB;
+    private JButton calculateB;
 
     private CalculateButtonHandler cbHandler;
 
@@ -28,18 +28,18 @@ public class CalculateDelta extends JFrame
 
         setTitle("");        
 
-        CoAx = new JLabel("Podaj a", SwingConstants.CENTER);
+        firstJL = new JLabel("Podaj a", SwingConstants.CENTER);
 
-        CoBx = new JLabel("Podaj b", SwingConstants.CENTER);
+        secondJL = new JLabel("Podaj b", SwingConstants.CENTER);
 
-        CoCx = new JLabel("Podaj c", SwingConstants.CENTER);
+        thirdJL = new JLabel("Podaj c", SwingConstants.CENTER);
         
 
-        CoAx.setFont(new Font("Courier New", Font.ITALIC, 12));
+        firstJL.setFont(new Font("Courier New", Font.ITALIC, 12));
 
-        CoBx.setFont(new Font("Courier New", Font.ITALIC, 12));
+        secondJL.setFont(new Font("Courier New", Font.ITALIC, 12));
 
-        CoCx.setFont(new Font("Courier New", Font.ITALIC, 12));
+        thirdJL.setFont(new Font("Courier New", Font.ITALIC, 12));
 
         Root1x = new JLabel("Pierwiastek pierwszy:", SwingConstants.CENTER);
 
@@ -57,14 +57,14 @@ public class CalculateDelta extends JFrame
 
 
 
-        CoA = new JTextField(6);
-        CoA.setBackground(col);
+        firstJTF = new JTextField(6);
+        firstJTF.setBackground(col);
 
-        CoB = new JTextField(6);
-        CoB.setBackground(col);
+        secondJTF = new JTextField(6);
+        secondJTF.setBackground(col);
 
-        CoC = new JTextField(6);
-        CoC.setBackground(col);
+        thirdJTF = new JTextField(6);
+        thirdJTF.setBackground(col);
 
         Root1 = new JLabel("", SwingConstants.LEFT);
 
@@ -96,17 +96,17 @@ public class CalculateDelta extends JFrame
 
         pane.add(space1);
         pane.add(space2);
-        pane.add(CoAx);
+        pane.add(firstJL);
 
-        pane.add(CoA);
+        pane.add(firstJTF);
 
-        pane.add(CoBx);
+        pane.add(secondJL);
 
-        pane.add(CoB);
+        pane.add(secondJTF);
 
-        pane.add(CoCx);
+        pane.add(thirdJL);
 
-        pane.add(CoC);
+        pane.add(thirdJTF);
 
         pane.add(Root1x);
 
@@ -140,11 +140,11 @@ public class CalculateDelta extends JFrame
 
         {
 
-            double a = Double.parseDouble(CoA.getText());
+            double a = Double.parseDouble(firstJTF.getText());
 
-            double b = Double.parseDouble(CoB.getText());
+            double b = Double.parseDouble(secondJTF.getText());
 
-            double c = Double.parseDouble(CoC.getText());
+            double c = Double.parseDouble(thirdJTF.getText());
 
              Double delta = b* b - 4* a * c;
 
@@ -194,7 +194,7 @@ public class CalculateDelta extends JFrame
 
  
 
-    private class ExitButtonHandler implements ActionListener//Creates a class on top of the interface
+    private class ExitButtonHandler implements ActionListener
 
     {
 
