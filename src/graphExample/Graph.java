@@ -1,3 +1,5 @@
+package graphExample;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +9,7 @@ public class Graph {
     private final int numberOfNodes;
 
 
-    public graph(int number)
+    public Graph(int number)
     {
         this.numberOfNodes = number;
     }
