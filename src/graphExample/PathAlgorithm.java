@@ -23,6 +23,27 @@ public class PathAlgorithm implements PathInterface {
         return graph;
     }
 
+    @Override
+    public String decompress(Graph graph, int node) {
+        return null;
+    }
+
+    @Override
+    public String findPath(Graph graph, int beginingNode, int destinationNode) {
+        return null;
+    }
+
+    @Override
+    public String getPathString(Graph graph, int beginingNode, int destinationNode) {
+        return null;
+    }
+
+    public static void main(String[] args) {
+        String filename = "inputData.txt";
+        PathAlgorithm pathAlgorithm = new PathAlgorithm();
+        System.out.println(pathAlgorithm.buildGraph(filename));
+    }
+
     private void buildInteriorOfNodes(Graph graph, Scanner sc, int numberOfNodes) {
         for (int i = numberOfNodes + 2; i < numberOfNodes*2+2; i++) {
             graph.interiorOfNodes.add(sc.nextLine());
@@ -48,26 +69,5 @@ public class PathAlgorithm implements PathInterface {
             graph.nodes.put(nodeNumber, nodes);
         }
         return graph;
-    }
-
-    @Override
-    public String decompress(Graph graph, int node) {
-        return null;
-    }
-
-    @Override
-    public String findPath(Graph graph, int beginingNode, int destinationNode) {
-        return null;
-    }
-
-    @Override
-    public String getPathString(Graph graph, int beginingNode, int destinationNode) {
-        return null;
-    }
-
-    public static void main(String[] args) {
-        String filename = "inputData.txt";
-        PathAlgorithm pathAlgorithm = new PathAlgorithm();
-        System.out.println(pathAlgorithm.buildGraph(filename));
     }
 }
