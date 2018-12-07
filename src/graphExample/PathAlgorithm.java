@@ -29,12 +29,12 @@ public class PathAlgorithm implements PathInterface {
     }
 
     @Override
-    public String findPath(Graph graph, int beginingNode, int destinationNode) {
+    public String findPath(Graph graph, int beginningNode, int destinationNode) {
         return null;
     }
 
     @Override
-    public String getPathString(Graph graph, int beginingNode, int destinationNode) {
+    public String getPathString(Graph graph, int beginningNode, int destinationNode) {
         return null;
     }
 

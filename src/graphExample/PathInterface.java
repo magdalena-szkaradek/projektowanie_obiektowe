@@ -16,13 +16,13 @@ public interface PathInterface {
     metoda znajdująca najkrotsza ścieżkę (numry wezlow) pomiędzy dwoma wezlami
     zadanymi na wejsciu
     */
-    public String findPath(Graph graph, int beginingNode, int destinationNode);
+    public String findPath(Graph graph, int beginningNode, int destinationNode);
 
     /*
     metoda zwracajaca rozkodowany ciag znakow, które sa przechowywane przez
     poszczegolne wezly w najkrotszej sciezce pomiedzy dwoma wezlami oznaczonymi
-    jako beginingNode oraz destinationNode
+    jako beginningNode oraz destinationNode
     */
-    public String getPathString(Graph graph, int beginingNode, int destinationNode);
+    public String getPathString(Graph graph, int beginningNode, int destinationNode);
 
 }
