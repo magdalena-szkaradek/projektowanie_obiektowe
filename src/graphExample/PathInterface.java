@@ -1,5 +1,3 @@
-package graphExample;
-
 public interface PathInterface {
 
     /*
@@ -12,7 +10,7 @@ public interface PathInterface {
     /*
     metoda dekodujaca i zwracajaca ciag znakow znajdujacy sie w zadanym wezle;
     */
-    public String decompress(Graph graph, int node, String code);
+    public String decompress(Graph graph, int node);
 
     /*
     metoda znajdująca najkrotsza ścieżkę (numry wezlow) pomiędzy dwoma wezlami
