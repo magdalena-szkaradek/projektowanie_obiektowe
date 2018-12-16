@@ -1,11 +1,15 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class PathAlgorithm implements PathInterface {
+    public static void main(String[] args) {
+        String filename = "inputData.txt";
+        PathAlgorithm pathAlgorithm = new PathAlgorithm();
+        Graph graph = pathAlgorithm.buildGraph(filename);
+        System.out.println(pathAlgorithm.getPathString(graph, 1,8));
+    }
+
     @Override
     public Graph buildGraph(String fileName) {
         File file = new File(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)).getPath());
@@ -31,19 +35,60 @@ public class PathAlgorithm implements PathInterface {
 
     @Override
     public String findPath(Graph graph, int beginningNode, int destinationNode) {
-        return null;
+
+        ArrayList<Integer> nodesList = graph.nodes.get(beginningNode);
+        if(beginningNode == destinationNode){
+            return Collections.singletonList(beginningNode).toString();
+        }
+        if(nodesList.contains(destinationNode)){
+            List<Integer> path = new ArrayList<>();
+            path.add(beginningNode);
+            path.add(destinationNode);
+            return path.toString();
+        }
+        List<Integer> notVisitedNodes = new ArrayList<>();
+        Map<Integer, Integer> distances = new HashMap<>();
+        Map<Integer, Integer> pathToPrev = new HashMap<>();
+
+        for (Integer node : graph.nodes.keySet()) {
+            distances.put(node, Integer.MAX_VALUE);
+            pathToPrev.put(node, null);
+            notVisitedNodes.add(node);
+        }
+        distances.put(beginningNode, 0);
+        while(!notVisitedNodes.isEmpty()){
+            Integer nodeWithMinimalDistance = distances.entrySet().stream()
+                    .filter(x -> notVisitedNodes.contains(x.getKey()))
+                    .min(Comparator.comparing(Map.Entry::getValue)).get().getKey();
+            notVisitedNodes.remove(nodeWithMinimalDistance);
+
+            for (Integer neighbour : graph.nodes.get(nodeWithMinimalDistance)) {
+                Integer temp = distances.get(nodeWithMinimalDistance) + decompress(graph, neighbour).length() + decompress(graph, nodeWithMinimalDistance).length();
+                if(temp < distances.get(neighbour)){
+                    distances.put(neighbour, temp);
+                    pathToPrev.put(neighbour, nodeWithMinimalDistance);
+                }
+            }
+        }
+        List<Integer> path = new ArrayList<>();
+        path.add(destinationNode);
+        while(pathToPrev.get(destinationNode) != null){
+            destinationNode = pathToPrev.get(destinationNode);
+            path.add(destinationNode);
+        }
+        Collections.reverse(path);
+        return path.toString();
     }
 
     @Override
     public String getPathString(Graph graph, int beginningNode, int destinationNode) {
-        return null;
-    }
-
-    public static void main(String[] args) {
-        String filename = "inputData.txt";
-        PathAlgorithm pathAlgorithm = new PathAlgorithm();
-        Graph graph = pathAlgorithm.buildGraph(filename);
-        System.out.println(pathAlgorithm.decompress(graph, 3));
+        String pathWithBrackets = findPath(graph, beginningNode, destinationNode);
+        String path = pathWithBrackets.substring(1, pathWithBrackets.length() -1);
+        String[] nodes = path.split(", ");
+        StringBuilder finalPath = new StringBuilder();
+        finalPath.append(decompress(graph, Integer.parseInt(nodes[0])));
+        Arrays.stream(nodes).skip(1).forEach(element -> finalPath.append(", ").append(decompress(graph, Integer.parseInt(element))));
+        return finalPath.toString();
     }
 
     private void buildInteriorOfNodes(Graph graph, Scanner sc, int numberOfNodes) {
