@@ -1,5 +1,3 @@
-package withGUI;
-
 import javax.swing.*;
 
 import java.awt.*;
@@ -157,7 +155,7 @@ public class CalculateDelta extends JFrame
                  Double x1 = (-1 * b)/ 2* a;
                 // Double x2 = (-1 * b)/ 2* a;
                  
-                 Root1.setText("Jest jeden podwójny pierwiastek: " + x1 );
+                 Root1.setText("Jest jeden podwï¿½jny pierwiastek: " + x1 );
 
                  Root2.setText("");
                  System.out.println("Rozwiazanie to: " + "");
@@ -175,7 +173,7 @@ public class CalculateDelta extends JFrame
 
                  Root2.setText("" + x2);
 
-                 System.out.println("Rozwi¹zanie to: " + x1 + ", " + x2);
+                 System.out.println("Rozwiï¿½zanie to: " + x1 + ", " + x2);
 
              }else if (delta < 0){
             	 
@@ -183,7 +181,7 @@ public class CalculateDelta extends JFrame
 
                  Root2.setText("" + "Delta jest mniejsza od  0 ");
 
-                 System.out.println("delta jest ujemna - brak rozwi¹zañ");
+                 System.out.println("delta jest ujemna - brak rozwiï¿½zaï¿½");
 
              }
 

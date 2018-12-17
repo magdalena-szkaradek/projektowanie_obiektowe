@@ -7,14 +7,16 @@ public class PathAlgorithm implements PathInterface {
         String filename = "inputData.txt";
         PathAlgorithm pathAlgorithm = new PathAlgorithm();
         Graph graph = pathAlgorithm.buildGraph(filename);
-        System.out.println(pathAlgorithm.getPathString(graph, 1,8));
+        System.out.println(pathAlgorithm.getPathString(graph, 1, 8));
     }
 
     @Override
     public Graph buildGraph(String fileName) {
-        File file = new File(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)).getPath());
         Graph graph = null;
-
+        if(!fileName.contains(".txt")){
+            throw new IllegalArgumentException();
+        }
+        File file = new File(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)).getPath());
         Scanner sc;
         try {
             sc = new Scanner(file);
@@ -37,10 +39,10 @@ public class PathAlgorithm implements PathInterface {
     public String findPath(Graph graph, int beginningNode, int destinationNode) {
 
         ArrayList<Integer> nodesList = graph.nodes.get(beginningNode);
-        if(beginningNode == destinationNode){
+        if (beginningNode == destinationNode) {
             return Collections.singletonList(beginningNode).toString();
         }
-        if(nodesList.contains(destinationNode)){
+        if (nodesList.contains(destinationNode)) {
             List<Integer> path = new ArrayList<>();
             path.add(beginningNode);
             path.add(destinationNode);
@@ -56,7 +58,7 @@ public class PathAlgorithm implements PathInterface {
             notVisitedNodes.add(node);
         }
         distances.put(beginningNode, 0);
-        while(!notVisitedNodes.isEmpty()){
+        while (!notVisitedNodes.isEmpty()) {
             Integer nodeWithMinimalDistance = distances.entrySet().stream()
                     .filter(x -> notVisitedNodes.contains(x.getKey()))
                     .min(Comparator.comparing(Map.Entry::getValue)).get().getKey();
@@ -64,7 +66,7 @@ public class PathAlgorithm implements PathInterface {
 
             for (Integer neighbour : graph.nodes.get(nodeWithMinimalDistance)) {
                 Integer temp = distances.get(nodeWithMinimalDistance) + decompress(graph, neighbour).length() + decompress(graph, nodeWithMinimalDistance).length();
-                if(temp < distances.get(neighbour)){
+                if (temp < distances.get(neighbour)) {
                     distances.put(neighbour, temp);
                     pathToPrev.put(neighbour, nodeWithMinimalDistance);
                 }
@@ -72,7 +74,7 @@ public class PathAlgorithm implements PathInterface {
         }
         List<Integer> path = new ArrayList<>();
         path.add(destinationNode);
-        while(pathToPrev.get(destinationNode) != null){
+        while (pathToPrev.get(destinationNode) != null) {
             destinationNode = pathToPrev.get(destinationNode);
             path.add(destinationNode);
         }
@@ -83,7 +85,7 @@ public class PathAlgorithm implements PathInterface {
     @Override
     public String getPathString(Graph graph, int beginningNode, int destinationNode) {
         String pathWithBrackets = findPath(graph, beginningNode, destinationNode);
-        String path = pathWithBrackets.substring(1, pathWithBrackets.length() -1);
+        String path = pathWithBrackets.substring(1, pathWithBrackets.length() - 1);
         String[] nodes = path.split(", ");
         StringBuilder finalPath = new StringBuilder();
         finalPath.append(decompress(graph, Integer.parseInt(nodes[0])));
