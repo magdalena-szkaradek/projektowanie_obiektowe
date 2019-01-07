@@ -29,9 +29,9 @@ public class DeduplicationClassTest {
         assertEquals(4, mapSize);
     }
 
-    @Test
-    public void removeSentence() throws Exception {
-
+    @Test(expected = DeduplicationInterface.NonExistentSentence.class)
+    public void removeSentence_nonExist() throws Exception {
+        deduplicationClass.removeSentence("Pawel ma kota");
     }
 
     @Test
