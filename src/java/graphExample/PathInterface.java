@@ -1,3 +1,5 @@
+package graphExample;
+
 public interface PathInterface {
 
     /*
