@@ -35,7 +35,7 @@ public class DeduplicationClassTest {
     }
 
     @Test
-    public void getDictionary() throws Exception {
+    public void getDictionary(){
 
     }
 
