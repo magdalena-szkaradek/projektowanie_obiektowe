@@ -15,7 +15,7 @@ public interface DeduplicationInterface {
      * Metoda usuwajaca zdanie
      * @param  sentence - zdanie, ktore ma zostac usuniete
      */
-    public void removeSentence(String sentence);
+    public void removeSentence(String sentence) throws NonExistentSentence;
 
     /**
      * Metoda pozwalajaca na wyswietlenie aktualnego slownika.

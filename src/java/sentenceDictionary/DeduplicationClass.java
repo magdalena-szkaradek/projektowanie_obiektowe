@@ -10,8 +10,7 @@ public class DeduplicationClass implements DeduplicationInterface {
     }
 
     @Override
-    public void removeSentence(String sentence) {
-
+    public void removeSentence(String sentence) throws NonExistentSentence {
     }
 
     @Override
